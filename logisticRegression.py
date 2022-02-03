@@ -8,16 +8,23 @@ dataset=ps.read_csv("Data.csv")
 X=dataset.iloc[:,:-1].values
 Y=dataset.iloc[:,-1].values
 
-"""Scaling value due to non relational magnitude"""
-from sklearn.preprocessing import StandardScaler
 
-sc=StandardScaler()
-X=sc.fit_transform(X)
 
 """Splitting dataset training set"""
 from sklearn.model_selection import train_test_split
 
 xtrain,xtest,ytrain,ytest = train_test_split(X,Y,test_size=0.5,random_state=21)
+
+"""Scaling value due to non relational magnitude"""
+from sklearn.preprocessing import StandardScaler
+
+sc=StandardScaler()
+xtrain=sc.fit_transform(xtrain)
+xtest=sc.transform(xtest)
+
+
+
+"""Scaling before splittng and after splitting also same No change in accuracy score"""
 
 #print(xtrain)
 
